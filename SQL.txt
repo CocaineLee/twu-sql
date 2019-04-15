@@ -1,0 +1,17 @@
+1. SELECT member.name FROM member, book , checkout_item  WHERE member.id=checkout_item.member_id AND book.id=checkout_item.book_id ANd book.title='The Hobbit';
+2. SELECT COUNT(*) FROM member WHERE id NOT IN (SELECT member_id FROM checkout_item);
+3. SELECT a.title FROM Book a WHERE NOT EXISTS (SELECT * FROM Checkout_item WHERE book_id=a.id)
+    UNION
+    SELECT b.title FROM Movie b WHERE NOT EXISTS (SELECT * FROM Checkout_item WHERE movie_id=b.id);
+4.
+INSERT INTO book
+VALUES (11, 'The Pragmatic Programmer');
+
+INSERT INTO member 
+VALUES (43, 'Zachary Lee');
+
+INSERT INTO checkout_item (member_id, book_id) 
+VALUES (43, 11);
+
+SELECT * FROM checkout_item WHERE member_id = 43;
+5.SELECT a.name FROM Member a WHERE 1 < (SELECT COUNT(*) FROM Checkout_item b WHERE a.id = b.member_id);
